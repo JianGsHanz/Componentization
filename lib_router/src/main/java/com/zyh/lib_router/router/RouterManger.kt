@@ -5,17 +5,22 @@ import android.content.Context
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.launcher.ARouter
+import com.zyh.lib_router.service.me.IMeService
 import java.io.Serializable
 
 /**
  * @author zyh
  * @date 2022/12/13
- * @Description:路由跳转
+ * @Description:路由管理
  */
 object RouterManger {
 
     fun inject(context: Context) {
         ARouter.getInstance().inject(context)
+    }
+
+    inline fun <reified T> getProvider(): T{
+       return ARouter.getInstance().navigation(T::class.java)
     }
 
     /**

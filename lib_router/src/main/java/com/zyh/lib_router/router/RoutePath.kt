@@ -10,6 +10,7 @@ object RoutePath {
     object Home {
         private const val HOME = "/home"
         const val ACTIVITY_HOME = "$HOME/home_activity"
+        const val SERVICE_HOME = "${HOME}/home_service"
     }
 
     object Login {

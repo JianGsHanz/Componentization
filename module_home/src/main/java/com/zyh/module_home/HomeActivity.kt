@@ -5,11 +5,13 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.zyh.lib_base.base.BaseVmActivity
 import com.zyh.lib_router.router.RoutePath
 import com.zyh.lib_router.router.RouterManger
-import com.zyh.lib_router.service.me.wrap.MeServiceWrap
+import com.zyh.lib_router.service.me.IMeService
 import kotlinx.android.synthetic.main.activity_home.*
 
 @Route(path = RoutePath.Home.ACTIVITY_HOME)
 class HomeActivity : BaseVmActivity<HomeViewModel>() {
+
+    override fun viewModelClass(): Class<HomeViewModel> = HomeViewModel::class.java
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +19,7 @@ class HomeActivity : BaseVmActivity<HomeViewModel>() {
 
         supportActionBar?.title = "Home"
 
-        tv.text = "IProvider ${MeServiceWrap.getUser()}"
+        tv.text = "IProvider ${RouterManger.getProvider<IMeService>().getUser()}"
 
         btGoMe.setOnClickListener {
             RouterManger.navigationActivityParams(

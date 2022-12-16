@@ -68,7 +68,7 @@
 -keep class * implements android.os.Parcelable {
   public static final android.os.Parcelable$Creator *;
 }
--keep class com.gyidc.quickback.model.** { *; }
+-keep class com.xx.xxx.model.** { *; }
 -dontwarn androidx.viewpager2.**
 -keep class androidx.viewpager2.** {*;}
 

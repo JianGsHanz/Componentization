@@ -21,17 +21,10 @@ abstract class BaseVmActivity<VM : BaseViewModel> : BaseActivity() {
     }
 
     private fun initViewModel() {
-        if (mViewModel == null) {
-            val type = javaClass.genericSuperclass
-            val modelClass: Class<BaseViewModel> = if (type is ParameterizedType) {
-                type.actualTypeArguments[0] as Class<BaseViewModel>
-            } else {
-                //如果没有指定泛型参数，则默认使用BaseViewModel
-                BaseViewModel::class.java
-            }
-            mViewModel = ViewModelProvider(this).get(modelClass) as VM
-        }
+        mViewModel = ViewModelProvider(this).get(viewModelClass())
     }
+
+    protected abstract fun viewModelClass(): Class<VM>
 
     open fun initData() {
         // Override if need
