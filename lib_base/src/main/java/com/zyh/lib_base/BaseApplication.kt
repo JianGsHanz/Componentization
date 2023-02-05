@@ -64,6 +64,7 @@ open class BaseApplication : Application() {
         val allTimeMillis = measureTimeMillis {
             // 以下只需要在主进程当中初始化 按需要调整
             if (ProcessUtils.isMainProcess(this)) {
+                initRouter()
                 val depends = mLoadModuleProxy.initByFrontDesk()
                 var dependInfo: String
                 depends.forEach {
@@ -97,11 +98,11 @@ open class BaseApplication : Application() {
 //        }
 //    }
 
-//    private fun initRouter() {
-//        if (BuildConfig.DEBUG) {
-//            ARouter.openLog()
-//            ARouter.openDebug()
-//        }
-//        ARouter.init(this)
-//    }
+    private fun initRouter() {
+        if (BuildConfig.DEBUG) {
+            ARouter.openLog()
+            ARouter.openDebug()
+        }
+        ARouter.init(this)
+    }
 }
